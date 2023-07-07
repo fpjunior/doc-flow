@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      input {
+        margin-bottom: 10px;
+        padding: 5px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Criar Fluxo</h1>
+    <input type="text" id="lineNameInput" placeholder="Nome da linha">
+    <select id="lineTypeSelect">
+      <option value="solid">Linha sólida</option>
+      <option value="dashed">Linha tracejada</option>
+    </select>
+    <button id="createFlowButton">Criar Fluxo</button>
+
+    <script>
+      document.getElementById('createFlowButton').addEventListener('click', function () {
+        const lineName = document.getElementById('lineNameInput').value;
+        const lineType = document.getElementById('lineTypeSelect').value;
+        parent.postMessage({ pluginMessage: { type: 'create-flow', lineName: lineName, lineType: lineType } }, '*');
+      });
+    </script>
+  </body>
+</html>
